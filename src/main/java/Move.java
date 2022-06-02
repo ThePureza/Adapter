@@ -1,10 +1,23 @@
 public class Move {
 
     IMovement movement;
-    MovementAdapter persistence;
+    MovementAdapter adapter;
 
-    public Move() {
-        movement = new MovementSquare();
-        persistence = new MovementAdapter(movement);
+    public Move(IMovement movement) {
+        this.movement = movement;
+        this.adapter = new MovementAdapter(movement);
+    }
+
+    public void setMovement(Integer movement) {
+        movement.setMovement(movement);
+        adapter.saveMovement();
+    }
+
+    public Integer getMovement() {
+        return adapter.recoverMovement();
+    }
+
+    public float getMeter() {
+        return adapter.getMeter();
     }
 }
